@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/whl/Qt5.9.3/5.9.3/gcc_64/include",
+                "/home/whl/Qt5.9.3/5.9.3/gcc_64/include/QtWidgets",
+                "/usr/local/opencv-3.4.5/include",
+                "/home/whl/Qt5.9.3/5.9.3/gcc_64/include/QtCore",
+                "/home/whl/Qt5.9.3/5.9.3/gcc_64/include/QtGui"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
