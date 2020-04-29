@@ -41,6 +41,10 @@ std::shared_ptr<EpollStream> EpollServer::Accept(const int32_t listerfd)
     while ((conn_sock = ::accept(listenfd,(sockaddr*)&remote,(socklen_t*)&addrlen)) > 0) {
         ::fcntl(conn_sock,F_SETFL,O_NONBLOCK);
         std::shared_ptr<EpollStream> connection = std::make_shared<EpollStream>(conn_sock);
+        if(new_session_cb_)
+        {
+            new_session_cb_(connection);
+        }
         EpollLoop::Get()->AddEpollEvents(EPOLLIN | EPOLLET, connection.get());
         std::cout << "create new connection " << conn_sock << std::endl;
 
@@ -53,6 +57,11 @@ std::shared_ptr<EpollStream> EpollServer::Accept(const int32_t listerfd)
     }
 
     return nullptr;
+}
+
+void EpollServer::SetNewConnectCB(std::function<void(std::shared_ptr<BasicStream>)> cb)
+{
+    new_session_cb_ = cb;
 }
 
 void EpollServer::Send(const std::string &bytes, const std::vector<std::shared_ptr<BasicStream>> &streams)

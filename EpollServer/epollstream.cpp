@@ -16,7 +16,7 @@ int32_t EpollStream::Receive(int32_t &readedSize)
     {
         if (GetDataSink())
         {
-            GetDataSink()->onDataIndication(_readBuffer, nread);
+            GetDataSink()->onDataIndication(_readBuffer, nread, this);
         }
         readedSize += nread;
     }
